@@ -1387,7 +1387,7 @@ export default function App() {
             {/* Section Header */}
             <div className="mb-10 text-center">
               <h3 className="font-display font-black text-3xl md:text-5xl uppercase tracking-wider text-white">
-                TAZAS Y CAMISAS
+                NUESTROS COMBOS
               </h3>
               <div className="w-12 h-[2px] bg-neutral-700 mx-auto mt-4" />
             </div>
