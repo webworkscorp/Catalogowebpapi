@@ -4,6 +4,7 @@
  */
 
 import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, 
   ArrowRight, 
@@ -56,7 +57,6 @@ export default function App() {
   const [purchaseQuantity, setPurchaseQuantity] = useState<number>(1);
   const [isWishlisted, setIsWishlisted] = useState<boolean>(false);
   const [activeInfoTab, setActiveInfoTab] = useState<'desc' | 'smart' | 'reviews'>('desc');
-  const [showPromo, setShowPromo] = useState<boolean>(true);
 
   const handleProductClick = (product: Product) => {
     catalogScrollY.current = window.scrollY;
@@ -184,7 +184,7 @@ export default function App() {
       img: 'https://i.imgur.com/Y8Hr8Gq.jpeg',
       imgs: ['https://i.imgur.com/Y8Hr8Gq.jpeg', 'https://i.imgur.com/WSOuPxJ.jpeg'],
       price: '0.85 ETH',
-      description: 'A masterless warrior armed with plasma katanas. This piece represents the clash of feudal ideals and futuristic augmentation in Neo-Tokyo.',
+      description: 'Transforma tus personajes favoritos en arte que puedes tocar. Cada cuadro captura la esencia de los mundos animados que te marcaron: colores vibrantes, detalles nítidos y esa energía única que solo el anime tiene. Ya sea un momento épico, un personaje icónico o una escena que nunca olvidaste, lo convertimos en una pieza que vive en tu espacio.',
       sizes: ['UHD Wallpaper', 'Original Vector', '3D GLB Model', 'Animated MP4 Loop'],
       creator: 'Sato_K'
     },
@@ -193,7 +193,7 @@ export default function App() {
       img: 'https://i.imgur.com/uGgpRrV.jpeg',
       imgs: ['https://i.imgur.com/uGgpRrV.jpeg', 'https://i.imgur.com/yT55bld.jpeg'],
       price: '0.95 ETH',
-      description: 'Hypnotizing colors crafted with procedural shaders. This digital art piece embodies high neon light reflections on interactive augmented skin.',
+      description: 'Transforma tus personajes favoritos en arte que puedes tocar. Cada cuadro captura la esencia de los mundos animados que te marcaron: colores vibrantes, detalles nítidos y esa energía única que solo el anime tiene. Ya sea un momento épico, un personaje icónico o una escena que nunca olvidaste, lo convertimos en una pieza que vive en tu espacio.',
       sizes: ['UHD Wallpaper', 'Animated MP4 Loop', 'HTML Custom WebGL'],
       creator: 'Aiko_Procedural'
     },
@@ -202,7 +202,7 @@ export default function App() {
       img: 'https://i.imgur.com/nsaggoZ.jpeg',
       imgs: ['https://i.imgur.com/nsaggoZ.jpeg', 'https://i.imgur.com/nPrdqgJ.jpeg'],
       price: '0.65 ETH',
-      description: 'A nostalgic look into retro-futurism. Witness sunset glows over endless glowing neon skyscrapers pulsing to standard 80s synth bass lines.',
+      description: 'Transforma tus personajes favoritos en arte que puedes tocar. Cada cuadro captura la esencia de los mundos animados que te marcaron: colores vibrantes, detalles nítidos y esa energía única que solo el anime tiene. Ya sea un momento épico, un personaje icónico o una escena que nunca olvidaste, lo convertimos en una pieza que vive en tu espacio.',
       sizes: ['UHD Wallpaper', 'Original Vector', 'Animated MP4 Loop'],
       creator: 'RetroVibe_Art'
     },
@@ -211,7 +211,7 @@ export default function App() {
       img: 'https://i.imgur.com/5VvdYLi.jpeg',
       imgs: ['https://i.imgur.com/5VvdYLi.jpeg', 'https://i.imgur.com/07tSGL5.jpeg'],
       price: '1.10 ETH',
-      description: 'A cybernetically enhanced elite protector equipped with sensory holographic visors, patrolling the high-altitude mainframe sectors of Neo-Tokyo.',
+      description: 'Transforma tus personajes favoritos en arte que puedes tocar. Cada cuadro captura la esencia de los mundos animados que te marcaron: colores vibrantes, detalles nítidos y esa energía única que solo el anime tiene. Ya sea un momento épico, un personaje icónico o una escena que nunca olvidaste, lo convertimos en una pieza que vive en tu espacio.',
       sizes: ['UHD Wallpaper', 'Original Vector', '3D GLB Model', 'Animated MP4 Loop'],
       creator: 'Kusanagi_Studio'
     },
@@ -220,7 +220,7 @@ export default function App() {
       img: 'https://i.imgur.com/2qxNHAd.jpeg',
       imgs: ['https://i.imgur.com/2qxNHAd.jpeg', 'https://i.imgur.com/mZfAAaz.jpeg'],
       price: '1.15 ETH',
-      description: 'A spectral manifestation of rogue AI within neural network sectors. The phantom drifts between reality and digital static, armed with phase daggers.',
+      description: 'Transforma tus personajes favoritos en arte que puedes tocar. Cada cuadro captura la esencia de los mundos animados que te marcaron: colores vibrantes, detalles nítidos y esa energía única que solo el anime tiene. Ya sea un momento épico, un personaje icónico o una escena que nunca olvidaste, lo convertimos en una pieza que vive en tu espacio.',
       sizes: ['UHD Wallpaper', 'Original Vector', '3D GLB Model', 'Animated MP4 Loop'],
       creator: 'Kusanagi_Studio'
     },
@@ -229,7 +229,7 @@ export default function App() {
       img: 'https://i.imgur.com/1thnEpD.jpeg',
       imgs: ['https://i.imgur.com/1thnEpD.jpeg', 'https://i.imgur.com/fX8CfdP.jpeg'],
       price: '1.25 ETH',
-      description: 'A rebellious hacker from the underground districts of Neo-Tokyo, donning high-conduit neural cyberware and a custom glowing visor.',
+      description: 'Transforma tus personajes favoritos en arte que puedes tocar. Cada cuadro captura la esencia de los mundos animados que te marcaron: colores vibrantes, detalles nítidos y esa energía única que solo el anime tiene. Ya sea un momento épico, un personaje icónico o una escena que nunca olvidaste, lo convertimos en una pieza que vive en tu espacio.',
       sizes: ['UHD Wallpaper', 'Original Vector', '3D GLB Model', 'Animated MP4 Loop'],
       creator: 'Kusanagi_Studio'
     },
@@ -238,7 +238,7 @@ export default function App() {
       img: 'https://i.imgur.com/rcJ8m29.jpeg',
       imgs: ['https://i.imgur.com/rcJ8m29.jpeg', 'https://i.imgur.com/wXof8Xs.jpeg'],
       price: '1.30 ETH',
-      description: 'An ancient warrior mechanized with a spectrum-shifting exoskeleton, wielding multi-wavelength energy sabers to defend the core network.',
+      description: 'Transforma tus personajes favoritos en arte que puedes tocar. Cada cuadro captura la esencia de los mundos animados que te marcaron: colores vibrantes, detalles nítidos y esa energía única que solo el anime tiene. Ya sea un momento épico, un personaje icónico o una escena que nunca olvidaste, lo convertimos en una pieza que vive en tu espacio.',
       sizes: ['UHD Wallpaper', 'Original Vector', '3D GLB Model', 'Animated MP4 Loop'],
       creator: 'Kusanagi_Studio'
     },
@@ -247,7 +247,7 @@ export default function App() {
       img: 'https://i.imgur.com/yaAUNkD.jpeg',
       imgs: ['https://i.imgur.com/yaAUNkD.jpeg', 'https://i.imgur.com/m3BxPIp.jpeg'],
       price: '1.20 ETH',
-      description: 'Engineering blueprint visualization of the high-agility core armor module. Guaranteed to include uncompressed CAD renders and layer details.',
+      description: 'Transforma tus personajes favoritos en arte que puedes tocar. Cada cuadro captura la esencia de los mundos animados que te marcaron: colores vibrantes, detalles nítidos y esa energía única que solo el anime tiene. Ya sea un momento épico, un personaje icónico o una escena que nunca olvidaste, lo convertimos en una pieza que vive en tu espacio.',
       sizes: ['Original Vector', '3D GLB Model', 'Blueprint PDF'],
       creator: 'H0L0_Mech'
     },
@@ -256,7 +256,7 @@ export default function App() {
       img: 'https://i.imgur.com/cVGQznb.jpeg',
       imgs: ['https://i.imgur.com/cVGQznb.jpeg', 'https://i.imgur.com/bew9f6Y.jpeg'],
       price: '1.40 ETH',
-      description: 'A vigilant high-tech guardian from the cybernetic elite force, protecting private corporate databanks against incoming netrunner intrusions.',
+      description: 'Transforma tus personajes favoritos en arte que puedes tocar. Cada cuadro captura la esencia de los mundos animados que te marcaron: colores vibrantes, detalles nítidos y esa energía única que solo el anime tiene. Ya sea un momento épico, un personaje icónico o una escena que nunca olvidaste, lo convertimos en una pieza que vive en tu espacio.',
       sizes: ['UHD Wallpaper', 'Original Vector', '3D GLB Model', 'Animated MP4 Loop'],
       creator: 'Kusanagi_Studio'
     },
@@ -268,7 +268,7 @@ export default function App() {
       img: 'https://i.imgur.com/hCtzqkU.jpeg',
       imgs: ['https://i.imgur.com/hCtzqkU.jpeg', 'https://i.imgur.com/f6JeQfS.jpeg'],
       price: '0.45 ETH',
-      description: 'Cheerful cartoon aesthetics wrapped in neon cybernetic layers. A dynamic collision between retro hand-drawn frames and procedural abstract elements.',
+      description: 'Los personajes que crecieron contigo, ahora en tu hogar. De Disney a Pixar, de los clásicos de tu infancia a los favoritos de hoy, damos vida a los personajes animados que más amás en un cuadro con acabado de galería. Perfecto para decorar cuartos infantiles, espacios creativos o simplemente para el adulto que nunca dejó de disfrutar la magia de la animación.',
       sizes: ['Low-Res Preview', 'UHD Wallpaper', 'Vector Master'],
       creator: 'BubblePop_Studio'
     },
@@ -277,7 +277,7 @@ export default function App() {
       img: 'https://i.imgur.com/V5CNQbP.jpeg',
       imgs: ['https://i.imgur.com/V5CNQbP.jpeg', 'https://i.imgur.com/ge9nhcY.jpeg'],
       price: '0.70 ETH',
-      description: 'Surreal expressionist digital painting. Bright color strokes that pop right out of dark screen spaces, creating an everlasting visual mood.',
+      description: 'Los personajes que crecieron contigo, ahora en tu hogar. De Disney a Pixar, de los clásicos de tu infancia a los favoritos de hoy, damos vida a los personajes animados que más amás en un cuadro con acabado de galería. Perfecto para decorar cuartos infantiles, espacios creativos o simplemente para el adulto que nunca dejó de disfrutar la magia de la animación.',
       sizes: ['UHD Wallpaper', 'Original Layer File (PSD)'],
       creator: 'PixelMuse'
     },
@@ -286,7 +286,7 @@ export default function App() {
       img: 'https://i.imgur.com/NcKj35g.jpeg',
       imgs: ['https://i.imgur.com/NcKj35g.jpeg', 'https://i.imgur.com/qxaW8yD.jpeg'],
       price: '0.50 ETH',
-      description: 'Liquid 3D chrome balloon structures under warm lighting setups. Perfect for modern design mockups and display posters.',
+      description: 'Los personajes que crecieron contigo, ahora en tu hogar. De Disney a Pixar, de los clásicos de tu infancia a los favoritos de hoy, damos vida a los personajes animados que más amás en un cuadro con acabado de galería. Perfecto para decorar cuartos infantiles, espacios creativos o simplemente para el adulto que nunca dejó de disfrutar la magia de la animación.',
       sizes: ['UHD Wallpaper', 'Original Vector', '3D GLB Model'],
       creator: 'SlickRender'
     },
@@ -295,7 +295,7 @@ export default function App() {
       img: 'https://i.imgur.com/Jzyebi0.jpeg',
       imgs: ['https://i.imgur.com/Jzyebi0.jpeg', 'https://i.imgur.com/8oudePH.jpeg'],
       price: '0.62 ETH',
-      description: 'The galactic fowl wandering through infinite stellar clouds. Imbues your digital gallery with a cosmic cartoon mascot energy.',
+      description: 'Los personajes que crecieron contigo, ahora en tu hogar. De Disney a Pixar, de los clásicos de tu infancia a los favoritos de hoy, damos vida a los personajes animados que más amás en un cuadro con acabado de galería. Perfecto para decorar cuartos infantiles, espacios creativos o simplemente para el adulto que nunca dejó de disfrutar la magia de la animación.',
       sizes: ['UHD Wallpaper', 'Animated MP4 Loop', 'Animated GIF Layer'],
       creator: 'AstroDuck'
     },
@@ -304,7 +304,7 @@ export default function App() {
       img: 'https://i.imgur.com/BdxfMTf.jpeg',
       imgs: ['https://i.imgur.com/BdxfMTf.jpeg', 'https://i.imgur.com/kzm4XH5.jpeg'],
       price: '0.38 ETH',
-      description: 'Vandals on the blockchain. High-impact neon street art styled spray drips that interact dynamically with background page lighting.',
+      description: 'Los personajes que crecieron contigo, ahora en tu hogar. De Disney a Pixar, de los clásicos de tu infancia a los favoritos de hoy, damos vida a los personajes animados que más amás en un cuadro con acabado de galería. Perfecto para decorar cuartos infantiles, espacios creativos o simplemente para el adulto que nunca dejó de disfrutar la magia de la animación.',
       sizes: ['UHD Wallpaper', 'Original JPEG Master'],
       creator: 'BlockGraf'
     },
@@ -313,7 +313,7 @@ export default function App() {
       img: 'https://i.imgur.com/ILbS2UB.jpeg',
       imgs: ['https://i.imgur.com/ILbS2UB.jpeg', 'https://i.imgur.com/El5KZ2F.jpeg'],
       price: '0.88 ETH',
-      description: 'Retrogaming cabinet illuminated under digital vaporwave aesthetic. Optimized for gaming setup displays and retro collector showcases.',
+      description: 'Los personajes que crecieron contigo, ahora en tu hogar. De Disney a Pixar, de los clásicos de tu infancia a los favoritos de hoy, damos vida a los personajes animados que más amás en un cuadro con acabado de galería. Perfecto para decorar cuartos infantiles, espacios creativos o simplemente para el adulto que nunca dejó de disfrutar la magia de la animación.',
       sizes: ['UHD Wallpaper', 'Original Vector', '3D GLB Model', 'Animated MP4 Loop'],
       creator: 'VaporDave'
     },
@@ -325,7 +325,7 @@ export default function App() {
       img: 'https://i.imgur.com/zoaHw7T.jpeg',
       imgs: ['https://i.imgur.com/zoaHw7T.jpeg'],
       price: '1.45 ETH',
-      description: 'An elegant synthesis of biological grace and chrome plating. Features hand-painted digital realism enhanced with cybernetic visual elements.',
+      description: 'Tu historia, tu rostro, tu arte. Convierte una foto tuya, de tu familia o de alguien especial en un retrato que va más allá de la fotografía. Elegante, personalizado y completamente único, cada retrato es una pieza que cuenta algo que ningún otro cuadro puede contar.',
       sizes: ['UHD Wallpaper', 'Original RAW File', '3D Face Filter'],
       creator: 'Hana_Cyber'
     },
@@ -334,7 +334,7 @@ export default function App() {
       img: 'https://i.imgur.com/67vJT2J.jpeg',
       imgs: ['https://i.imgur.com/67vJT2J.jpeg'],
       price: '1.10 ETH',
-      description: 'A close-up high-contrast face portrait showcasing wisdom, scars, and mechanical optical enhancements. A masterclass in digital storytelling.',
+      description: 'Tu historia, tu rostro, tu arte. Convierte una foto tuya, de tu familia o de alguien especial en un retrato que va más allá de la fotografía. Elegante, personalizado y completamente único, cada retrato es una pieza que cuenta algo que ningún otro cuadro puede contar.',
       sizes: ['UHD Wallpaper', 'Hi-Res PSD Layers'],
       creator: 'Ren_Shogun'
     },
@@ -343,7 +343,7 @@ export default function App() {
       img: 'https://i.imgur.com/2intjp0.jpeg',
       imgs: ['https://i.imgur.com/2intjp0.jpeg'],
       price: '0.90 ETH',
-      description: 'A striking hyper-realistic portrait styled with neon splash paints and glowing jewelry. Captures a soulful expression reflecting digital divinity.',
+      description: 'Tu historia, tu rostro, tu arte. Convierte una foto tuya, de tu familia o de alguien especial en un retrato que va más allá de la fotografía. Elegante, personalizado y completamente único, cada retrato es una pieza que cuenta algo que ningún otro cuadro puede contar.',
       sizes: ['UHD Wallpaper', 'Original Vector Art', 'Digital Master Print'],
       creator: 'Aya_Neon'
     },
@@ -352,7 +352,7 @@ export default function App() {
       img: 'https://i.imgur.com/JBIRdGH.jpeg',
       imgs: ['https://i.imgur.com/JBIRdGH.jpeg'],
       price: '0.99 ETH',
-      description: 'Portrait of an astronaut reflecting glowing cosmic formations across their golden helmet visor. Deep atmospheric lighting and incredible microdetails.',
+      description: 'Tu historia, tu rostro, tu arte. Convierte una foto tuya, de tu familia o de alguien especial en un retrato que va más allá de la fotografía. Elegante, personalizado y completamente único, cada retrato es una pieza que cuenta algo que ningún otro cuadro puede contar.',
       sizes: ['UHD Wallpaper', 'Animated High-Fi MP4'],
       creator: 'Galaxy_Walker'
     },
@@ -361,7 +361,7 @@ export default function App() {
       img: 'https://i.imgur.com/9WR6llV.jpeg',
       imgs: ['https://i.imgur.com/9WR6llV.jpeg'],
       price: '0.75 ETH',
-      description: 'A sleek portrait of a digital netrunner shrouded in holographic HUD elements. Perfect for profile picture avatars and high-end digital galleries.',
+      description: 'Tu historia, tu rostro, tu arte. Convierte una foto tuya, de tu familia o de alguien especial en un retrato que va más allá de la fotografía. Elegante, personalizado y completamente único, cada retrato es una pieza que cuenta algo que ningún otro cuadro puede contar.',
       sizes: ['UHD Wallpaper', 'Avatar Asset Pack'],
       creator: 'Link_0x'
     }
@@ -374,7 +374,7 @@ export default function App() {
       img: 'https://i.imgur.com/NytcsxW.jpeg',
       imgs: ['https://i.imgur.com/NytcsxW.jpeg', 'https://i.imgur.com/Uk8lxoF.jpeg'],
       price: '1.35 ETH',
-      description: 'Un atleta envuelto en ráfagas de energía dorada al momento de patear el balón hacia la victoria celeste en estadios repletos.',
+      description: 'El momento que te hizo gritar, ahora en tu pared. Celebra a tu equipo, tu ídolo o esa jugada que quedó grabada en la historia. Nuestros cuadros deportivos están hechos para los que viven el deporte con pasión: diseños con carácter, colores que impactan y un acabado que se ve premium desde el primer vistazo.',
       sizes: ['UHD Wallpaper', 'Hyper-Res Master', 'Animated Poster'],
       creator: 'Striker_Design'
     },
@@ -383,7 +383,7 @@ export default function App() {
       img: 'https://i.imgur.com/UjMrWo5.jpeg',
       imgs: ['https://i.imgur.com/UjMrWo5.jpeg', 'https://i.imgur.com/ILAM0HM.jpeg'],
       price: '1.15 ETH',
-      description: 'El cerebro del mediocampo analizado por inteligencia artificial en tiempo real. Redes neuronales y estelares dibujan sus pases perfectos.',
+      description: 'El momento que te hizo gritar, ahora en tu pared. Celebra a tu equipo, tu ídolo o esa jugada que quedó grabada en la historia. Nuestros cuadros deportivos están hechos para los que viven el deporte con pasión: diseños con carácter, colores que impactan y un acabado que se ve premium desde el primer vistazo.',
       sizes: ['UHD Wallpaper', 'Original Vector', '3D Asset Pack'],
       creator: 'Tactical_AI'
     },
@@ -392,7 +392,7 @@ export default function App() {
       img: 'https://i.imgur.com/kAXFfXi.jpeg',
       imgs: ['https://i.imgur.com/kAXFfXi.jpeg', 'https://i.imgur.com/PcNVxls.jpeg'],
       price: '1.25 ETH',
-      description: 'El guardián cibernético estirándose al límite en una atmósfera lluviosa rodeado de hologramas deflector de goles.',
+      description: 'El momento que te hizo gritar, ahora en tu pared. Celebra a tu equipo, tu ídolo o esa jugada que quedó grabada en la historia. Nuestros cuadros deportivos están hechos para los que viven el deporte con pasión: diseños con carácter, colores que impactan y un acabado que se ve premium desde el primer vistazo.',
       sizes: ['UHD Wallpaper', 'Original Layer File (PSD)', 'Premium Canvas'],
       creator: 'Wall_Shield'
     },
@@ -401,7 +401,7 @@ export default function App() {
       img: 'https://i.imgur.com/1jdcVCc.jpeg',
       imgs: ['https://i.imgur.com/1jdcVCc.jpeg', 'https://i.imgur.com/QdQYNse.jpeg'],
       price: '1.50 ETH',
-      description: 'La silueta mística de un delantero de leyenda, cruzando la cancha a la velocidad de un haz de luz láser y descolocando defensas.',
+      description: 'El momento que te hizo gritar, ahora en tu pared. Celebra a tu equipo, tu ídolo o esa jugada que quedó grabada en la historia. Nuestros cuadros deportivos están hechos para los que viven el deporte con pasión: diseños con carácter, colores que impactan y un acabado que se ve premium desde el primer vistazo.',
       sizes: ['UHD Wallpaper', 'Animated High-Fi MP4', '3D GLB Model'],
       creator: 'Kusanagi_Studio'
     },
@@ -410,7 +410,7 @@ export default function App() {
       img: 'https://i.imgur.com/w83m4NR.jpeg',
       imgs: ['https://i.imgur.com/w83m4NR.jpeg', 'https://i.imgur.com/VQQc5Ju.jpeg'],
       price: '1.40 ETH',
-      description: 'El delantero definitivo, fusionando velocidad cibernética y agilidad sobrehumana bajo luces de estadio holográficas.',
+      description: 'El momento que te hizo gritar, ahora en tu pared. Celebra a tu equipo, tu ídolo o esa jugada que quedó grabada en la historia. Nuestros cuadros deportivos están hechos para los que viven el deporte con pasión: diseños con carácter, colores que impactan y un acabado que se ve premium desde el primer vistazo.',
       sizes: ['UHD Wallpaper', 'Original RAW File', '3D Model Pack'],
       creator: 'Apex_Tactics'
     }
@@ -468,7 +468,7 @@ export default function App() {
         'https://i.imgur.com/aAFDkK9.jpeg'
       ],
       price: '₡12,000',
-      description: 'Mochila de cuero de primera calidad diseñada para el viaje urbano diario. Fabricada artesanalmente con piel de flor entera curtida al vegetal, cuenta con compartimentos acolchados interiores de fácil acceso y cierres de latón pulido.',
+      description: 'El pack definitivo para los que van en serio. Todo lo que necesitás para vivir tu estilo en cada momento del día: empezá la mañana con tu taza personalizada, llevá tu arte puesto a donde vayas y decorá tu espacio con un cuadro que dice quién sos. Tres piezas, un solo concepto, impacto total.',
       sizes: ['S / Daily Commuter', 'M / Weekend Explorer'],
       creator: 'Atelier Noir'
     },
@@ -479,7 +479,7 @@ export default function App() {
         'https://i.imgur.com/6gTAZ7p.jpeg'
       ],
       price: '₡6,000',
-      description: 'Gafas de sol de diseño contemporáneo y montura de acetato curado a mano. Equipadas con lentes polarizados de alta precisión con protección UV400 completa ante los rayos directos del sol.',
+      description: 'Pequeño en tamaño, grande en personalidad. Para los que quieren algo práctico sin renunciar al estilo. Tu diseño en dos formatos que usás todos los días: uno para tu rutina de la mañana, otro para lucirlo donde vayas. Simple, poderoso y 100% tuyo.',
       sizes: ['Standard Fit', 'Wide Fit'],
       creator: 'Monocle Studio'
     },
@@ -490,21 +490,21 @@ export default function App() {
         'https://i.imgur.com/tbiatAd.jpeg'
       ],
       price: '₡9,000',
-      description: 'Juego de cerámica minimalista que incluye canica difusora de fragancias, tazón orgánico de doble pared y platillo para té. Modelado a mano con arcilla de gres de origen natural.',
+      description: 'Llevá tu arte contigo y exponélo en casa. La combinación perfecta para quienes quieren que su estilo trascienda lo digital. Un cuadro que decora, una camisa que impacta. El mismo diseño, dos formas de mostrarlo al mundo.',
       sizes: ['Complete Set', 'Ceramic Carafe Only'],
       creator: 'Sora Ceramics'
     }
   ];
 
+  const productImages = selectedProduct ? (selectedProduct.imgs || [selectedProduct.img]) : [];
+  const currentImage = selectedProduct ? (productImages[activeThumbnailIndex] || selectedProduct.img) : '';
+
+  const isCombo = selectedProduct ? (premiumGear.some(p => p.name === selectedProduct.name) || combos.some(p => p.name === selectedProduct.name)) : false;
+
+  let basePrice = 3000;
+  let isSoldOut = false;
+  
   if (selectedProduct) {
-    const productImages = selectedProduct.imgs || [selectedProduct.img];
-    const currentImage = productImages[activeThumbnailIndex] || selectedProduct.img;
-
-    const isCombo = premiumGear.some(p => p.name === selectedProduct.name) || combos.some(p => p.name === selectedProduct.name);
-
-    let basePrice = 3000;
-    let isSoldOut = false;
-    
     if (isCombo) {
       basePrice = parseInt(selectedProduct.price.replace(/[^0-9]/g, ''), 10) || 3000;
     } else if (selectedSize === '10x15 cm') {
@@ -516,53 +516,64 @@ export default function App() {
     } else if (selectedSize === '60x40 cm') {
       isSoldOut = true;
     }
+  }
 
-    const priceNum = basePrice * purchaseQuantity;
-    const originalPriceNum = Math.round(basePrice / 0.6) * purchaseQuantity;
+  const priceNum = basePrice * purchaseQuantity;
+  const originalPriceNum = Math.round(basePrice / 0.6) * purchaseQuantity;
 
-    const formatPrice = (value: number) => {
-      return `₡${value.toLocaleString('en-US')}`;
-    };
+  const formatPrice = (value: number) => {
+    return `₡${value.toLocaleString('en-US')}`;
+  };
 
-    const totalPriceUSD = isSoldOut ? 'Agotado' : formatPrice(priceNum);
-    const originalPriceUSD = isCombo ? '' : (isSoldOut ? '' : formatPrice(originalPriceNum));
+  const totalPriceUSD = isSoldOut ? 'Agotado' : formatPrice(priceNum);
+  const originalPriceUSD = isCombo ? '' : (isSoldOut ? '' : formatPrice(originalPriceNum));
 
-    // Interactive rendering filters as elegant corporate studio previews
-    const getThumbnailStyle = (index: number) => {
-      switch (index) {
-        case 1: // Charcoal sketch render
-          return { filter: 'grayscale(100%) contrast(140%) brightness(105%) shadow-[inset_0_0_40px_rgba(0,0,0,0.8)]' };
-        case 2: // Soft gallery warm light render
-          return { filter: 'sepia(12%) saturate(120%) brightness(102%) contrast(105%)' };
-        case 3: // Macro detail closeup
-          return { transform: 'scale(1.45)', transformOrigin: 'center center' };
-        default: // Original
-          return {};
-      }
-    };
+  // Interactive rendering filters as elegant corporate studio previews
+  const getThumbnailStyle = (index: number) => {
+    switch (index) {
+      case 1: // Charcoal sketch render
+        return { filter: 'grayscale(100%) contrast(140%) brightness(105%) shadow-[inset_0_0_40px_rgba(0,0,0,0.8)]' };
+      case 2: // Soft gallery warm light render
+        return { filter: 'sepia(12%) saturate(120%) brightness(102%) contrast(105%)' };
+      case 3: // Macro detail closeup
+        return { transform: 'scale(1.45)', transformOrigin: 'center center' };
+      default: // Original
+        return {};
+    }
+  };
 
-    const getThumbnailLabel = (index: number) => {
-      switch (index) {
-        case 0: return 'Vista de Estudio';
-        case 1: return 'Boceto a Lápiz';
-        case 2: return 'Iluminación Cálida';
-        case 3: return 'Detalle de Textura';
-        default: return 'Vista del Activo';
-      }
-    };
+  const getThumbnailLabel = (index: number) => {
+    switch (index) {
+      case 0: return 'Vista de Estudio';
+      case 1: return 'Boceto a Lápiz';
+      case 2: return 'Iluminación Cálida';
+      case 3: return 'Detalle de Textura';
+      default: return 'Vista del Activo';
+    }
+  };
 
-    const getRelatedProducts = () => {
-      if (categories.some(p => p.name === selectedProduct.name)) return categories;
-      if (cartoons.some(p => p.name === selectedProduct.name)) return cartoons;
-      if (portraits.some(p => p.name === selectedProduct.name)) return portraits;
-      if (footballers.some(p => p.name === selectedProduct.name)) return footballers;
-      if (combos.some(p => p.name === selectedProduct.name)) return combos;
-      if (premiumGear.some(p => p.name === selectedProduct.name)) return premiumGear;
-      return [];
-    };
+  const getRelatedProducts = () => {
+    if (!selectedProduct) return [];
+    if (categories.some(p => p.name === selectedProduct.name)) return categories;
+    if (cartoons.some(p => p.name === selectedProduct.name)) return cartoons;
+    if (portraits.some(p => p.name === selectedProduct.name)) return portraits;
+    if (footballers.some(p => p.name === selectedProduct.name)) return footballers;
+    if (combos.some(p => p.name === selectedProduct.name)) return combos;
+    if (premiumGear.some(p => p.name === selectedProduct.name)) return premiumGear;
+    return [];
+  };
 
-    return (
-      <div className="min-h-screen bg-[#08080A] font-sans text-neutral-100 overflow-x-hidden relative selection:bg-neutral-800 selection:text-white">
+  return (
+    <AnimatePresence mode="wait">
+      {selectedProduct ? (
+        <motion.div
+          key={`product-${selectedProduct.name}-${selectedProduct.creator}`}
+          initial={{ opacity: 0, scale: 0.98, y: 15 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.98, y: -15 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className="min-h-screen bg-[#08080A] font-sans text-neutral-100 overflow-x-hidden relative selection:bg-neutral-800 selection:text-white"
+        >
         
         {/* Subtle Luxury Gradient Overlay */}
         <div className="absolute top-0 left-0 w-full h-[500px] pointer-events-none z-0 overflow-hidden opacity-10">
@@ -640,15 +651,16 @@ export default function App() {
             </div>
 
             {/* RIGHT SIDE: Elegant Enterprise Product Form (Clean details, price panel, select size) */}
-            <div className="lg:col-span-6 flex flex-col text-left gap-5">
+            <div className="lg:col-span-6 flex flex-col text-left gap-6 bg-neutral-900/10 border border-white/5 p-6 sm:p-8 rounded-3xl backdrop-blur-md">
               
-              {/* Product Header Name & Rating */}
-              <div>
-                <h1 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl uppercase tracking-tight text-white mb-2">
-                  {selectedProduct.name}
-                </h1>
-                
-                <div className="flex items-center gap-3 text-xs text-neutral-400">
+              {/* Product Header Name (Restored for combos) / Rating */}
+              <div className="flex flex-col gap-3">
+                {isCombo && (
+                  <h1 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl uppercase tracking-tight text-white mb-1">
+                    {selectedProduct.name}
+                  </h1>
+                )}
+                <div className="flex items-center gap-3 text-xs text-neutral-400 mt-1">
                   <div className="flex items-center text-amber-500">
                     <Star size={13} className="fill-current" />
                     <Star size={13} className="fill-current" />
@@ -663,13 +675,15 @@ export default function App() {
               </div>
 
               {/* Minimal Pristine Pricing Panel */}
-              <div className="flex flex-wrap items-baseline gap-3 py-2">
+              <div className="flex flex-wrap items-baseline gap-3 py-1 border-t border-b border-white/5">
                 <span className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
                   {totalPriceUSD}
                 </span>
-                <span className="text-sm sm:text-base text-neutral-500 line-through font-normal">
-                  {originalPriceUSD}
-                </span>
+                {originalPriceUSD && (
+                  <span className="text-sm sm:text-base text-neutral-500 line-through font-normal">
+                    {originalPriceUSD}
+                  </span>
+                )}
                 <span className="text-xs font-semibold text-emerald-400 bg-emerald-950/30 border border-emerald-500/20 px-2.5 py-0.5 ml-1 rounded-full">
                   Ahorra 40%
                 </span>
@@ -855,58 +869,20 @@ export default function App() {
               </div>
 
               {/* Core Description Text */}
-              <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed mt-2 border-t border-white/5 pt-4">
-                {selectedProduct.description} Activo digital de alta gama renderizado en ultra alta resolución (300 DPI), optimizado para impresión comercial, su uso en entornos corporativos o su preservación en catálogos de arte digital personalizado.
-              </p>
+              <div className="mt-4 pt-6 border-t border-white/5">
+                <h4 className="text-[10px] uppercase tracking-widest font-black text-neutral-500 mb-2">
+                  Descripción del Artículo
+                </h4>
+                <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed">
+                  {selectedProduct.description}
+                </p>
+              </div>
 
             </div>
 
           </div>
 
-          {/* TRUST PILLARS (Clean corporate styling, matching Beauty Shop) */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-14 py-8 border-t border-b border-white/5">
-            <div className="flex items-start gap-4 p-4 rounded-2xl hover:bg-white/[0.02] transition-colors duration-300">
-              <div className="p-3 bg-neutral-900 border border-neutral-800 text-[#ff4b4b] rounded-xl flex items-center justify-center shrink-0">
-                <Globe size={18} />
-              </div>
-              <div>
-                <h4 className="font-bold text-xs uppercase tracking-wider text-white mb-1">
-                  Entrega Inmediata
-                </h4>
-                <p className="text-xs text-neutral-400 leading-relaxed">
-                  Descarga tus activos licenciados al instante desde la pasarela privada de distribución original.
-                </p>
-              </div>
-            </div>
 
-            <div className="flex items-start gap-4 p-4 rounded-2xl hover:bg-white/[0.02] transition-colors duration-300">
-              <div className="p-3 bg-neutral-900 border border-neutral-800 text-[#ff4b4b] rounded-xl flex items-center justify-center shrink-0">
-                <ShieldCheck size={18} />
-              </div>
-              <div>
-                <h4 className="font-bold text-xs uppercase tracking-wider text-white mb-1">
-                  Transacción Verificada
-                </h4>
-                <p className="text-xs text-neutral-400 leading-relaxed">
-                  Toda la metadata del creador original se registra con su sello digital para garantizar la autoría del retrato.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 p-4 rounded-2xl hover:bg-white/[0.02] transition-colors duration-300">
-              <div className="p-3 bg-neutral-900 border border-neutral-800 text-[#ff4b4b] rounded-xl flex items-center justify-center shrink-0">
-                <Award size={18} />
-              </div>
-              <div>
-                <h4 className="font-bold text-xs uppercase tracking-wider text-white mb-1">
-                  Soporte al Creador
-                </h4>
-                <p className="text-xs text-neutral-400 leading-relaxed">
-                  Cada licencia adquirida financia directamente al creador del retrato o diseño, sin intermediación de terceros.
-                </p>
-              </div>
-            </div>
-          </div>
 
           {/* RELATED PRODUCTS */}
           <div className="mt-16">
@@ -951,11 +927,10 @@ export default function App() {
                       alt={item.name} 
                       className="w-full aspect-[3/4] object-cover rounded-2xl" 
                     />
-                    <div className="absolute bottom-4 left-4 right-4 z-20">
-                      <p className="font-display font-bold text-xs sm:text-sm tracking-wide uppercase text-white truncate">
-                        {item.name}
-                      </p>
-                      {/* Price display removed as requested */}
+                    <div className="absolute bottom-4 left-4 right-4 z-20 text-center">
+                      <span className="font-display font-black text-xs tracking-wider uppercase text-white bg-black/60 group-hover:bg-[#ff4b4b] backdrop-blur-sm px-4 py-2 rounded-full border border-white/10 transition-all duration-300 inline-block w-full text-center">
+                        VER MÁS
+                      </span>
                     </div>
                   </div>
                 ))}
@@ -964,12 +939,16 @@ export default function App() {
           </div>
 
         </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="min-h-screen bg-[#0A0A0C] font-sans text-white overflow-x-hidden relative selection:bg-[#ff4b4b] selection:text-white">
+      </motion.div>
+    ) : (
+      <motion.div
+        key="catalog"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.45 }}
+        className="min-h-screen bg-[#0A0A0C] font-sans text-white overflow-x-hidden relative selection:bg-[#ff4b4b] selection:text-white"
+      >
       {/* Hero Background Video */}
       <div 
         className="absolute top-0 left-0 w-full h-[900px] pointer-events-none z-0 overflow-hidden opacity-[0.16] mix-blend-luminosity"
@@ -1129,10 +1108,30 @@ export default function App() {
         </nav>
 
         {/* Hero Section */}
-        <main className="grid md:grid-cols-[1fr_auto] gap-12 md:gap-16 pt-8 md:pt-16 items-center">
+        <motion.main 
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.1
+              }
+            }
+          }}
+          className="grid md:grid-cols-[1fr_auto] gap-12 md:gap-16 pt-8 md:pt-16 items-center"
+        >
           
           {/* Left Content */}
-          <div className="flex flex-col z-10">
+          <motion.div 
+            variants={{
+              hidden: { opacity: 0, x: -30 },
+              show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 60, damping: 15 } }
+            }}
+            className="flex flex-col z-10"
+          >
             <h2 className="text-[#ff4b4b] font-bold tracking-widest text-[13px] uppercase mb-4 drop-shadow-[0_0_8px_rgba(255,75,75,0.3)]">PRODUCTOS PERSONALIZADOS</h2>
             <h1 className="font-display font-black text-[48px] md:text-[68px] leading-[1.05] uppercase tracking-tight mb-8 drop-shadow-[0_0_20px_rgba(255,75,75,0.15)] relative">
               <span className="absolute -inset-4 bg-[#ff4b4b] blur-[80px] opacity-15 z-[-1] pointer-events-none"></span>
@@ -1150,10 +1149,16 @@ export default function App() {
                 Ver colecciones
               </button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Content - Hero Image */}
-          <div className="relative w-[90%] sm:w-[400px] md:w-[460px] mx-auto md:mx-0 aspect-square mt-10 lg:mt-0 xl:mr-10 group">
+          <motion.div 
+            variants={{
+              hidden: { opacity: 0, scale: 0.9, y: 30 },
+              show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 55, damping: 13 } }
+            }}
+            className="relative w-[90%] sm:w-[400px] md:w-[460px] mx-auto md:mx-0 aspect-square mt-10 lg:mt-0 xl:mr-10 group"
+          >
             {/* Glowing Border FX */}
             <div className="absolute inset-[-4px] bg-gradient-to-tr from-[#f97316] via-[#ff4b4b] to-[#dc2626] rounded-[48px] blur-[8px] opacity-100 z-0 group-hover:blur-[12px] transition-all duration-500"></div>
             <div className="absolute inset-[-4px] bg-gradient-to-tr from-[#f97316] via-[#ff4b4b] to-[#dc2626] rounded-[48px] blur-[25px] opacity-60 z-0 group-hover:blur-[35px] group-hover:opacity-80 transition-all duration-500"></div>
@@ -1184,11 +1189,18 @@ export default function App() {
                  <Play size={18} className="fill-[#0A0A0C] text-[#0A0A0C] ml-1" />
                </div>
             </div>
-          </div>
-        </main>
+          </motion.div>
+        </motion.main>
 
         {/* Featured Products Section */}
-        <section id="catalog-section" className="mt-12 md:mt-16">
+        <motion.section 
+          id="catalog-section" 
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-12 md:mt-16"
+        >
           <h3 className="font-display font-bold text-lg uppercase tracking-[0.15em] mb-6">ANIMES</h3>
           
           <div className="relative group/slider">
@@ -1222,19 +1234,25 @@ export default function App() {
                     alt={cat.name} 
                     className="w-full aspect-[3/4] object-cover rounded-2xl" 
                   />
-                  <div className="absolute bottom-4 left-4 right-4 z-20">
-                    <p className="font-display font-bold text-xs sm:text-sm tracking-wide uppercase text-white drop-shadow-md">
-                      {cat.name}
-                    </p>
+                  <div className="absolute bottom-4 left-4 right-4 z-20 text-center">
+                    <span className="font-display font-black text-xs tracking-wider uppercase text-white bg-black/60 group-hover:bg-[#ff4b4b] backdrop-blur-sm px-4 py-2 rounded-full border border-white/10 transition-all duration-300 inline-block w-full text-center">
+                      VER MÁS
+                    </span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Caricaturas Section */}
-        <section className="mt-10 md:mt-14">
+        <motion.section 
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-10 md:mt-14"
+        >
           <h3 className="font-display font-bold text-lg uppercase tracking-[0.15em] mb-6">CARICATURAS</h3>
           
           <div className="relative group/slider-cartoons">
@@ -1268,19 +1286,25 @@ export default function App() {
                     alt={item.name} 
                     className="w-full aspect-[3/4] object-cover rounded-2xl" 
                   />
-                  <div className="absolute bottom-4 left-4 right-4 z-20">
-                    <p className="font-display font-bold text-xs sm:text-sm tracking-wide uppercase text-white drop-shadow-md">
-                      {item.name}
-                    </p>
+                  <div className="absolute bottom-4 left-4 right-4 z-20 text-center">
+                    <span className="font-display font-black text-xs tracking-wider uppercase text-white bg-black/60 group-hover:bg-[#ff4b4b] backdrop-blur-sm px-4 py-2 rounded-full border border-white/10 transition-all duration-300 inline-block w-full text-center">
+                      VER MÁS
+                    </span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Retratos Section */}
-        <section className="mt-10 md:mt-14">
+        <motion.section 
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-10 md:mt-14"
+        >
           <h3 className="font-display font-bold text-lg uppercase tracking-[0.15em] mb-6">RETRATOS</h3>
           
           <div className="relative group/slider-portraits">
@@ -1314,20 +1338,26 @@ export default function App() {
                     alt={item.name} 
                     className="w-full aspect-[3/4] object-cover rounded-2xl" 
                   />
-                  <div className="absolute bottom-4 left-4 right-4 z-20">
-                    <p className="font-display font-bold text-xs sm:text-sm tracking-wide uppercase text-white drop-shadow-md">
-                      {item.name}
-                    </p>
+                  <div className="absolute bottom-4 left-4 right-4 z-20 text-center">
+                    <span className="font-display font-black text-xs tracking-wider uppercase text-white bg-black/60 group-hover:bg-[#ff4b4b] backdrop-blur-sm px-4 py-2 rounded-full border border-white/10 transition-all duration-300 inline-block w-full text-center">
+                      VER MÁS
+                    </span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Futbolistas Section */}
-        <section className="mt-10 md:mt-14">
-          <h3 className="font-display font-bold text-lg uppercase tracking-[0.15em] mb-6">FUTBOLISTAS</h3>
+        <motion.section 
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-10 md:mt-14"
+        >
+          <h3 className="font-display font-bold text-lg uppercase tracking-[0.15em] mb-6">DEPORTISTAS</h3>
           
           <div className="relative group/slider-footballers">
             {/* Navigation Arrows */}
@@ -1360,29 +1390,41 @@ export default function App() {
                     alt={item.name} 
                     className="w-full aspect-[3/4] object-cover rounded-2xl" 
                   />
-                  <div className="absolute bottom-4 left-4 right-4 z-20">
-                    <p className="font-display font-bold text-xs sm:text-sm tracking-wide uppercase text-white drop-shadow-md">
-                      {item.name}
-                    </p>
+                  <div className="absolute bottom-4 left-4 right-4 z-20 text-center">
+                    <span className="font-display font-black text-xs tracking-wider uppercase text-white bg-black/60 group-hover:bg-[#ff4b4b] backdrop-blur-sm px-4 py-2 rounded-full border border-white/10 transition-all duration-300 inline-block w-full text-center">
+                      VER MÁS
+                    </span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Portada Publicitaria de Alta Gama (Imagen completa de borde a borde de la web) */}
-        <section className="mt-12 md:mt-16 w-screen relative left-1/2 -translate-x-1/2 overflow-hidden bg-neutral-950/40">
+        <motion.section 
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-12 md:mt-16 w-screen relative left-1/2 -translate-x-1/2 overflow-hidden bg-neutral-950/40"
+        >
           <img 
             src="https://i.imgur.com/3oIFMnp.jpeg" 
             alt="Portada Publicitaria Original" 
             className="w-full h-auto block select-none"
             referrerPolicy="no-referrer"
           />
-        </section>
+        </motion.section>
 
         {/* PRODUCTOS PREMIUM SECTION (Clean Brand Grid Catalog) */}
-        <section className="mt-12 md:mt-16 border-t border-b border-neutral-800/40 py-12 relative bg-neutral-950/20">
+        <motion.section 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-12 md:mt-16 border-t border-b border-neutral-800/40 py-12 relative bg-neutral-950/20"
+        >
           <div className="max-w-7xl mx-auto px-4">
             {/* Section Header */}
             <div className="mb-10 text-center">
@@ -1413,7 +1455,7 @@ export default function App() {
                   {/* Details */}
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
-                      <h4 className="font-display font-bold text-xl text-white uppercase tracking-wide group-hover:text-red-400 transition-colors duration-300">
+                      <h4 className="font-display font-black text-xl text-white uppercase tracking-wider group-hover:text-red-400 transition-colors duration-300">
                         {item.name}
                       </h4>
                     </div>
@@ -1438,7 +1480,7 @@ export default function App() {
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Footer with copyright and semi-transparent logo */}
         <footer className="mt-12 pb-10 flex flex-col items-center justify-center gap-4 text-center border-t border-white/5 pt-8">
@@ -1450,36 +1492,9 @@ export default function App() {
           </p>
         </footer>
 
-        {/* Ventana Emergente Publicitaria al Entrar (Estilo Temu/Shein, de Alto Impacto y Gran Tamaño) */}
-        {showPromo && (
-          <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/85 backdrop-blur-md p-3 sm:p-6 animate-fade-in">
-            {/* Backdrop overlay click-to-close */}
-            <div className="absolute inset-0 cursor-pointer" onClick={() => setShowPromo(false)} />
-            
-            <div className="relative max-w-[95%] sm:max-w-lg md:max-w-xl w-full bg-transparent overflow-visible flex flex-col items-center z-10 transition-transform duration-500 scale-100 animate-scale-up">
-              {/* Contenedor de la Imagen con Sombra Premium */}
-              <div className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.85)] border border-white/10 bg-neutral-950/40">
-                {/* Botón de Cerrar (X) de Alta Gama posicionado para tapar el "X" de la esquina superior derecha de la imagen */}
-                <button 
-                  onClick={() => setShowPromo(false)}
-                  className="absolute top-3 right-3 sm:top-4 sm:right-4 z-[100000] bg-black/70 hover:bg-[#ff4b4b]/90 text-white rounded-full p-2 sm:p-2.5 transition-all cursor-pointer border border-white/10 hover:scale-110 shadow-lg flex items-center justify-center"
-                  aria-label="Cerrar publicidad"
-                >
-                  <X size={20} className="sm:w-[22px] sm:h-[22px]" />
-                </button>
-
-                <img 
-                  src="https://i.imgur.com/N4EZfzD.png" 
-                  alt="Publicidad Especial Qeeb" 
-                  className="w-full h-auto max-h-[85vh] object-contain block select-none mx-auto"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            </div>
-          </div>
-        )}
-
       </div>
-    </div>
+      </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
