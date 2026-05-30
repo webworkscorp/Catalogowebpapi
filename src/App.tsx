@@ -68,9 +68,6 @@ export default function App() {
     setPurchaseQuantity(1);
     setIsWishlisted(false);
     setActiveInfoTab('desc');
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }, 10);
   };
 
   const scrollLeft = () => {
@@ -160,6 +157,21 @@ export default function App() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (selectedProduct) {
+      document.body.style.overflow = 'hidden';
+      const overlay = document.getElementById('product-detail-overlay');
+      if (overlay) {
+        overlay.scrollTop = 0;
+      }
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedProduct]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -564,43 +576,43 @@ export default function App() {
   };
 
   return (
-    <AnimatePresence mode="wait">
-      {selectedProduct ? (
-        <motion.div
-          key={`product-${selectedProduct.name}-${selectedProduct.creator}`}
-          initial={{ opacity: 0, scale: 0.98, y: 15 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.98, y: -15 }}
-          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="min-h-screen bg-[#08080A] font-sans text-neutral-100 overflow-x-hidden relative selection:bg-neutral-800 selection:text-white"
-        >
-        
-        {/* Subtle Luxury Gradient Overlay */}
-        <div className="absolute top-0 left-0 w-full h-[500px] pointer-events-none z-0 overflow-hidden opacity-10">
-          <div className="absolute top-0 left-0 w-full h-[150px] bg-gradient-to-b from-black to-transparent" />
-          <div className="absolute top-0 left-[-10%] w-[120%] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06),transparent_60%)] filter blur-[50px]" />
-        </div>
-
-        {/* Global Responsive Padding Container */}
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10 pb-20 pt-4">
-          
-          {/* Back Navigation */}
-          <nav className="py-4 md:py-6 border-b border-white/5 mb-8">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs">
-              <button 
-                onClick={() => {
-                  setSelectedProduct(null);
-                  setTimeout(() => {
-                    window.scrollTo({ top: catalogScrollY.current, behavior: 'instant' });
-                  }, 10);
-                }}
-                className="group flex items-center gap-2 self-start px-4 py-2 bg-neutral-900/80 hover:bg-neutral-800 text-neutral-200 font-medium tracking-wider border border-white/5 transition-all duration-300 cursor-pointer"
-              >
-                <ArrowLeft size={13} className="group-hover:-translate-x-1 transition-transform" />
-                <span>VOLVER AL CATÁLOGO</span>
-              </button>
+    <div className="min-h-screen bg-[#0A0A0C] font-sans text-white overflow-x-hidden relative selection:bg-[#ff4b4b] selection:text-white">
+      {/* PRODUCT DETAIL VIEW OVERLAY */}
+      <AnimatePresence>
+        {selectedProduct && (
+          <motion.div
+            id="product-detail-overlay"
+            key={`product-${selectedProduct.name}-${selectedProduct.creator}`}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.33, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-50 overflow-y-auto bg-[#08080A] font-sans text-neutral-100 selection:bg-neutral-800 selection:text-white"
+          >
+            
+            {/* Subtle Luxury Gradient Overlay */}
+            <div className="absolute top-0 left-0 w-full h-[500px] pointer-events-none z-0 overflow-hidden opacity-10">
+              <div className="absolute top-0 left-0 w-full h-[150px] bg-gradient-to-b from-black to-transparent" />
+              <div className="absolute top-0 left-[-10%] w-[120%] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06),transparent_60%)] filter blur-[50px]" />
             </div>
-          </nav>
+
+            {/* Global Responsive Padding Container */}
+            <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10 pb-20 pt-4">
+              
+              {/* Back Navigation */}
+              <nav className="py-4 md:py-6 border-b border-white/5 mb-8">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs">
+                  <button 
+                    onClick={() => {
+                      setSelectedProduct(null);
+                    }}
+                    className="group flex items-center gap-2 self-start px-4 py-2 bg-neutral-900/80 hover:bg-neutral-800 text-neutral-200 font-medium tracking-wider border border-white/5 transition-all duration-300 cursor-pointer"
+                  >
+                    <ArrowLeft size={13} className="group-hover:-translate-x-1 transition-transform" />
+                    <span>VOLVER AL CATÁLOGO</span>
+                  </button>
+                </div>
+              </nav>
 
           {/* Core Master Grid: 12-column layout tailored for mobile & desktop */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
@@ -939,15 +951,19 @@ export default function App() {
           </div>
 
         </div>
-      </motion.div>
-    ) : (
-      <motion.div
-        key="catalog"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.45 }}
-        className="min-h-screen bg-[#0A0A0C] font-sans text-white overflow-x-hidden relative selection:bg-[#ff4b4b] selection:text-white"
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* CATALOG VIEW (Always mounted, compositor-accelerated for peak performance) */}
+      <div
+        className="w-full"
+        style={{
+          pointerEvents: selectedProduct ? 'none' : 'auto',
+          opacity: selectedProduct ? 0.35 : 1,
+          filter: selectedProduct ? 'blur(10px)' : 'none',
+          transition: 'opacity 350ms cubic-bezier(0.22, 1, 0.36, 1), filter 350ms cubic-bezier(0.22, 1, 0.36, 1)',
+        }}
       >
       {/* Hero Background Video */}
       <div 
@@ -1193,14 +1209,7 @@ export default function App() {
         </motion.main>
 
         {/* Featured Products Section */}
-        <motion.section 
-          id="catalog-section" 
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-12 md:mt-16"
-        >
+        <section id="catalog-section" className="mt-12 md:mt-16">
           <h3 className="font-display font-bold text-lg uppercase tracking-[0.15em] mb-6">ANIMES</h3>
           
           <div className="relative group/slider">
@@ -1243,16 +1252,10 @@ export default function App() {
               ))}
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Caricaturas Section */}
-        <motion.section 
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-10 md:mt-14"
-        >
+        <section className="mt-10 md:mt-14">
           <h3 className="font-display font-bold text-lg uppercase tracking-[0.15em] mb-6">CARICATURAS</h3>
           
           <div className="relative group/slider-cartoons">
@@ -1295,16 +1298,10 @@ export default function App() {
               ))}
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Retratos Section */}
-        <motion.section 
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-10 md:mt-14"
-        >
+        <section className="mt-10 md:mt-14">
           <h3 className="font-display font-bold text-lg uppercase tracking-[0.15em] mb-6">RETRATOS</h3>
           
           <div className="relative group/slider-portraits">
@@ -1347,16 +1344,10 @@ export default function App() {
               ))}
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Futbolistas Section */}
-        <motion.section 
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-10 md:mt-14"
-        >
+        <section className="mt-10 md:mt-14">
           <h3 className="font-display font-bold text-lg uppercase tracking-[0.15em] mb-6">DEPORTISTAS</h3>
           
           <div className="relative group/slider-footballers">
@@ -1399,32 +1390,20 @@ export default function App() {
               ))}
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Portada Publicitaria de Alta Gama (Imagen completa de borde a borde de la web) */}
-        <motion.section 
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-12 md:mt-16 w-screen relative left-1/2 -translate-x-1/2 overflow-hidden bg-neutral-950/40"
-        >
+        <section className="mt-12 md:mt-16 w-screen relative left-1/2 -translate-x-1/2 overflow-hidden bg-neutral-950/40">
           <img 
             src="https://i.imgur.com/3oIFMnp.jpeg" 
             alt="Portada Publicitaria Original" 
             className="w-full h-auto block select-none"
             referrerPolicy="no-referrer"
           />
-        </motion.section>
+        </section>
 
         {/* PRODUCTOS PREMIUM SECTION (Clean Brand Grid Catalog) */}
-        <motion.section 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-12 md:mt-16 border-t border-b border-neutral-800/40 py-12 relative bg-neutral-950/20"
-        >
+        <section className="mt-12 md:mt-16 border-t border-b border-neutral-800/40 py-12 relative bg-neutral-950/20">
           <div className="max-w-7xl mx-auto px-4">
             {/* Section Header */}
             <div className="mb-10 text-center">
@@ -1480,7 +1459,7 @@ export default function App() {
               ))}
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Footer with copyright and semi-transparent logo */}
         <footer className="mt-12 pb-10 flex flex-col items-center justify-center gap-4 text-center border-t border-white/5 pt-8">
@@ -1493,8 +1472,7 @@ export default function App() {
         </footer>
 
       </div>
-      </motion.div>
-      )}
-    </AnimatePresence>
+      </div>
+    </div>
   );
 }
